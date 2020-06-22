@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -8,6 +7,7 @@ class App extends Component {
     playerName: '',
     players: ["Akutsu", "Kim", "Igai", "Mackee", "Nguyen", "Mike", "Aaron", "Sagar"],
     colors: ["Red", "Blue"],
+    shuffledPlayers: [],
   }
 
 
@@ -24,25 +24,34 @@ class App extends Component {
     this.generateTeam(players)
   }
 
-  generateTeam = (players) => {
-    let i = players.length - 1;
+  handleGenerateTeam = () => {
+    const shuffledPlayers = this.generateTeam();
+    this.setState({
+      shuffledPlayers
+    });
+  }
+
+  generateTeam = () => {
+    const { players } = this.state
+    const NewPlayers = [...players];
+    let i = NewPlayers.length - 1;
     for (; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      const temp = players[i];
-      players[i] = players[j];
-      players[j] = temp;
+      const temp = NewPlayers[i];
+      NewPlayers[i] = NewPlayers[j];
+      NewPlayers[j] = temp;
     }
-    return players;
+    return NewPlayers
   }
 
   onKeyPress = (e) => {
     if (e.keyCode === 13) {
-      this.addPlayer();
+      return this.addPlayer();
     }
   }
 
   render() {
-    const { playerName, players } = this.state
+    const { playerName, players, shuffledPlayers } = this.state;
     return (
       <div className="App" >
         <h1>Team Generator</h1>
@@ -62,12 +71,16 @@ class App extends Component {
             <li>{player}</li>
           ))
           }
+          <button
+            className="submit-button"
+            onClick={this.handleGenerateTeam}
+          >
+            Submit Button
+          </button>
+          {shuffledPlayers.map(sp => (
+            <li>{sp}</li>))
+          }
         </div>
-        <button
-          className="submit-button"
-          onClick={this.generateTeam(players)}
-        >Submit Button</button>
-        {players}
       </div>
     );
   }
