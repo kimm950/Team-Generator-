@@ -56,7 +56,7 @@ class App extends Component {
     return (
       <div className="App" >
         <div className='header'>
-          <h1>Team Generator</h1>
+          <h2>Team Generator</h2>
           <div className="left" >
             <div className='input-wrapper'>
               <input
@@ -70,24 +70,29 @@ class App extends Component {
                 onClick={this.addPlayer}
               >Invite!</button>
             </div>
-            {players.sort().map(player => (
-              <li>{player}</li>
-            ))
-            }
+            <div className='players'>
+              {players.sort().map(player => (
+                <li>{player}</li>
+              ))
+              }
+            </div>
           </div>
         </div>
         <div className="right">
-          <button
-            className="submit-button"
-            onClick={this.handleGenerateTeam}
-          >
-            Shuffle!
+          <div className="right-wrapper">
+            <button
+              className="shuffle-button"
+              onClick={this.handleGenerateTeam}
+            >
+              Shuffle!
           </button>
-          <ul className='shuffled-players'>
-            {shuffledPlayers.map((sp, i) => (
-              <li style={{ color: colors[i] }} key={i}>{sp}</li>))
-            }
-          </ul>
+            <div className='small-header'>Warriors</div>
+            <div className='shuffled-players'>
+              {shuffledPlayers.map((sp, i) => (
+                <li style={{ color: colors[i] }} key={i}>{sp}</li>))
+              }
+            </div>
+          </div>
         </div>
       </div>
     );
