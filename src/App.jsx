@@ -52,34 +52,42 @@ class App extends Component {
 
   render() {
     const { playerName, players, shuffledPlayers } = this.state;
+    const colors = ['#0088FE', '#0088FE', '#00C49F', '#00C49F', '#FFBB28', '#FFBB28', '#FF8042', '#FF8042', '#0088FE', '#0088FE', '#00C49F', '#00C49F', '#FFBB28', '#FFBB28', '#FF8042', '#FF8042', '#0088FE', '#0088FE', '#00C49F', '#00C49F', '#FFBB28', '#FFBB28', '#FF8042', '#FF8042'];
     return (
       <div className="App" >
-        <h1>Team Generator</h1>
-        <div className="left" >
-          <input
-            value={playerName}
-            onChange={e => this.handleChange(e)}
-            onKeyDown={this.onKeyPress}
-          />
-          <button
-            className="submit-button"
-            onClick={this.addPlayer}
-          >Submit Button</button>
+        <div className='header'>
+          <h1>Team Generator</h1>
+          <div className="left" >
+            <div className='input-wrapper'>
+              <input
+                className='input'
+                value={playerName}
+                onChange={e => this.handleChange(e)}
+                onKeyDown={this.onKeyPress}
+              />
+              <button
+                className="submit-button"
+                onClick={this.addPlayer}
+              >Invite!</button>
+            </div>
+            {players.sort().map(player => (
+              <li>{player}</li>
+            ))
+            }
+          </div>
         </div>
         <div className="right">
-          {players.sort().map(player => (
-            <li>{player}</li>
-          ))
-          }
           <button
             className="submit-button"
             onClick={this.handleGenerateTeam}
           >
-            Submit Button
+            Shuffle!
           </button>
-          {shuffledPlayers.map(sp => (
-            <li>{sp}</li>))
-          }
+          <ul className='shuffled-players'>
+            {shuffledPlayers.map((sp, i) => (
+              <li style={{ color: colors[i] }} key={i}>{sp}</li>))
+            }
+          </ul>
         </div>
       </div>
     );
