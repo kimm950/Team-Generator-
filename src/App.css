@@ -63,7 +63,7 @@
 .shuffled-players {
   background: rgb(40, 44, 52);
   padding: 20px;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 5px 5px;
   list-style: none;
   width: 200px;
   height: fit-content;
@@ -73,6 +73,7 @@
   height: fit-content;
   padding: 10px;
   background: rgb(32, 35, 42);
+  border-radius: 5px 5px 0 0;
 }
 
 .shuffle-button {
