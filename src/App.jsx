@@ -44,6 +44,11 @@ class App extends Component {
     return NewPlayers
   }
 
+  clearPlayers = () => {
+    const { players } = this.state
+    this.setState({ players: [] })
+  }
+
   onKeyPress = (e) => {
     if (e.keyCode === 13) {
       return this.addPlayer();
@@ -76,6 +81,10 @@ class App extends Component {
               ))
               }
             </div>
+            <button
+              className="shuffle-button"
+              onClick={this.clearPlayers}>Clear!
+              </button>
           </div>
         </div>
         <div className="right">
