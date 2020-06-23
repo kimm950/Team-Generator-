@@ -81,10 +81,11 @@ class App extends Component {
               ))
               }
             </div>
-            <button
-              className="shuffle-button"
-              onClick={this.clearPlayers}>Clear!
-              </button>
+            {players.length !== 0 &&
+              <button
+                className="shuffle-button"
+                onClick={this.clearPlayers}>Clear!
+              </button>}
           </div>
         </div>
         <div className="right">
